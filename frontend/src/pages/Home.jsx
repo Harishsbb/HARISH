@@ -6,13 +6,15 @@ import { SiPython, SiWhatsapp, SiJavascript, SiReact, SiNodedotjs, SiExpress, Si
 import { FaJava, FaNodeJs } from "react-icons/fa";
 import ProjectCard from '../components/ProjectCard';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
 const fetchFeaturedProjects = async () => {
-    const { data } = await axios.get('http://localhost:5000/api/projects?featured=true');
+    const { data } = await axios.get(`${API_URL}/projects?featured=true`);
     return data;
 };
 
 const fetchProfile = async () => {
-    const { data } = await axios.get('http://localhost:5000/api/profile');
+    const { data } = await axios.get(`${API_URL}/profile`);
     return data;
 };
 
