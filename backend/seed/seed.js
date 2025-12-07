@@ -30,7 +30,7 @@ const seedData = async () => {
         await Profile.create({
             name: 'Harish K',
             title: 'Full Stack Developer and Data Analyst',
-            email: 'bavaharishkuamr@gmail.com',
+            email: 'bavaharishkumar@gmail.com',
             phone: '6369151728',
             linkedin: 'https://linkedin.com/in/harishk06944/',
             github: 'https://github.com/Harishsbb',

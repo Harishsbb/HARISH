@@ -198,9 +198,13 @@ const Home = () => {
                                 </div>
                             </div>
 
-                            <button className="bg-accent text-primary px-8 py-3 rounded-full font-bold text-sm hover:opacity-90 transition-opacity">
+                            <a
+                                href="/HARISH K RESUME 4.12.2025.pdf"
+                                download="HARISH K RESUME 4.12.2025.pdf"
+                                className="inline-block bg-accent text-primary px-8 py-3 rounded-full font-bold text-sm hover:opacity-90 transition-opacity"
+                            >
                                 Download CV
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
