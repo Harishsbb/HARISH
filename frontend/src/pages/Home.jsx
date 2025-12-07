@@ -165,15 +165,7 @@ const Home = () => {
                     </div>
 
                     <div className="flex flex-col md:flex-row gap-12 items-center">
-                        <div className="flex-1">
-                            <div className="relative">
-                                <img
-                                    src={profile.image}
-                                    alt="About Me"
-                                    className="w-full max-w-md mx-auto rounded-lg grayscale hover:grayscale-0 transition-all duration-500"
-                                />
-                            </div>
-                        </div>
+
 
                         <div className="flex-1">
                             <h3 className="text-3xl font-bold text-white mb-2">Hi There! I'm {profile.name}</h3>
