@@ -189,22 +189,26 @@ const Home = () => {
                                     <span className="text-gray-400">: {profile.email}</span>
                                 </div>
                                 <div className="flex justify-between border-b border-white/5 pb-2">
-                                    <span className="text-white font-medium">Language</span>
-                                    <span className="text-gray-400">: English, Tamil</span>
-                                </div>
-                                <div className="flex justify-between border-b border-white/5 pb-2">
                                     <span className="text-white font-medium">Freelance</span>
                                     <span className="text-gray-400">: Available</span>
                                 </div>
                             </div>
 
-                            <a
-                                href="/HARISH K RESUME 4.12.2025.pdf"
-                                download="HARISH K RESUME 4.12.2025.pdf"
-                                className="inline-block bg-accent text-primary px-8 py-3 rounded-full font-bold text-sm hover:opacity-90 transition-opacity"
-                            >
-                                Download CV
-                            </a>
+                            <div className="flex gap-4">
+                                <a
+                                    href="/HARISH K RESUME 4.12.2025.pdf"
+                                    download="HARISH K RESUME 4.12.2025.pdf"
+                                    className="inline-block bg-accent text-primary px-8 py-3 rounded-full font-bold text-sm hover:opacity-90 transition-opacity"
+                                >
+                                    Download CV
+                                </a>
+                                <a
+                                    href="#contact"
+                                    className="inline-block border-2 border-accent text-accent px-8 py-3 rounded-full font-bold text-sm hover:bg-accent hover:text-primary transition-all"
+                                >
+                                    Get in Touch
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -350,6 +354,73 @@ const Home = () => {
                                 ))}
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+            {/* Contact Section */}
+            <section id="contact" className="py-20 bg-secondary/20">
+                <div className="container mx-auto px-4 max-w-4xl">
+                    <div className="text-center mb-16">
+                        <h4 className="text-accent text-sm font-bold uppercase tracking-widest mb-2">Contact</h4>
+                        <h2 className="text-3xl font-bold text-white">Get in Touch</h2>
+                        <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+                            Have a project in mind or want to discuss the latest tech? Feel free to send me a message!
+                        </p>
+                    </div>
+
+                    <div className="bg-primary/50 backdrop-blur-md rounded-2xl p-8 md:p-12 border border-white/5 shadow-2xl">
+                        <form className="space-y-6" onSubmit={async (e) => {
+                            e.preventDefault();
+                            const formData = new FormData(e.target);
+                            const data = Object.fromEntries(formData.entries());
+                            try {
+                                await axios.post(`${API_URL}/contact`, data);
+                                alert('Message sent successfully!');
+                                e.target.reset();
+                            } catch (error) {
+                                alert('Failed to send message. Please try again.');
+                            }
+                        }}>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label className="block text-gray-400 text-sm font-medium mb-2">Name</label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        required
+                                        className="w-full bg-secondary/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors"
+                                        placeholder="Your Name"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-gray-400 text-sm font-medium mb-2">Email</label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        required
+                                        className="w-full bg-secondary/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors"
+                                        placeholder="Your Email"
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <label className="block text-gray-400 text-sm font-medium mb-2">Message</label>
+                                <textarea
+                                    name="message"
+                                    required
+                                    rows="4"
+                                    className="w-full bg-secondary/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors resize-none"
+                                    placeholder="Your Message..."
+                                ></textarea>
+                            </div>
+                            <button
+                                type="submit"
+                                className="w-full bg-accent text-primary font-bold py-4 rounded-lg hover:opacity-90 transition-all flex items-center justify-center gap-2 group"
+                            >
+                                Send Message
+                                <Mail size={18} className="group-hover:translate-x-1 transition-transform" />
+                            </button>
+                        </form>
                     </div>
                 </div>
             </section>
