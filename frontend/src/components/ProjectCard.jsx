@@ -46,7 +46,7 @@ const ProjectCard = ({ project }) => {
 
             <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-white group-hover:text-accent transition-colors">{project.title}</h3>
-                <p className="text-gray-400 mb-4 line-clamp-2 text-sm">{project.shortDescription || project.description}</p>
+                <p className="text-gray-300 mb-4 line-clamp-2 text-sm">{project.shortDescription || project.description}</p>
 
                 <div className="flex flex-wrap gap-2">
                     {(project.tech || []).slice(0, 4).map((tech, index) => (

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { SiPython, SiWhatsapp, SiJavascript, SiReact, SiNodedotjs, SiExpress, SiFlask, SiMysql, SiMongodb, SiGit, SiPostman, SiFigma, SiHtml5, SiCss3, SiBootstrap, SiScikitlearn, SiNumpy, SiPandas, SiDjango } from "react-icons/si";
 import { FaJava, FaNodeJs } from "react-icons/fa";
 import ProjectCard from '../components/ProjectCard';
-import MarvelCanvas from '../components/MarvelCanvas';
+import Dark3DBackground from '../components/Dark3DBackground';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
@@ -54,7 +54,7 @@ const getSkillIcon = (skillName) => {
     if (lowerSkill.includes('postman')) return { icon: <SiPostman size={40} />, color: "text-orange-600" };
     if (lowerSkill.includes('vscode') || lowerSkill.includes('code')) return { icon: <Code size={40} />, color: "text-blue-500" };
 
-    return { icon: <Globe size={40} />, color: "text-gray-400" };
+    return { icon: <Globe size={40} />, color: "text-gray-300" };
 };
 
 const Home = () => {
@@ -76,8 +76,7 @@ const Home = () => {
 
     return (
         <div className="bg-primary min-h-screen font-sans text-gray-300 relative">
-            {/* Global 3D Background */}
-            <MarvelCanvas />
+            <Dark3DBackground />
 
             {/* Integrated Navbar */}
             <nav className="py-6 px-4 md:px-12 flex justify-between items-center max-w-7xl mx-auto relative z-10">
@@ -85,7 +84,7 @@ const Home = () => {
                     <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-primary font-bold">H</div>
                     <span className="text-xl font-bold text-white">Harish</span>
                 </div>
-                <div className="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+                <div className="hidden md:flex gap-8 text-sm font-medium text-gray-300">
                     <a href="#" className="text-accent">HOME</a>
                     <a href="#about" className="hover:text-accent transition-colors">ABOUT</a>
                     <a href="#projects" className="hover:text-accent transition-colors">PORTFOLIO</a>
@@ -111,7 +110,7 @@ const Home = () => {
                         <h1 className="text-5xl md:text-8xl font-bold text-white mb-4 md:mb-6 leading-tight tracking-tight break-words">
                             {profile.name}
                         </h1>
-                        <h2 className="text-xl md:text-3xl text-gray-400 mb-6 md:mb-8 font-light">
+                        <h2 className="text-xl md:text-3xl text-gray-300 mb-6 md:mb-8 font-light">
                             {profile.title}
                         </h2>
                         <motion.button
@@ -130,7 +129,7 @@ const Home = () => {
                                 { icon: <Mail size={20} />, href: `mailto:${profile.email}` },
                                 { icon: <Phone size={20} />, href: `tel:${profile.phone}` }
                             ].map((item, i) => (
-                                <a key={i} href={item.href} target="_blank" rel="noopener noreferrer" className="p-3 border border-white/10 rounded-full text-gray-400 hover:text-accent hover:border-accent transition-all">
+                                <a key={i} href={item.href} target="_blank" rel="noopener noreferrer" className="p-3 border border-white/10 rounded-full text-gray-300 hover:text-accent hover:border-accent transition-all">
                                     {item.icon}
                                 </a>
                             ))}
@@ -159,11 +158,10 @@ const Home = () => {
             </section>
 
             {/* About Me Section */}
-            <section id="about" className="py-20 bg-secondary/30">
+            <section id="about" className="py-20 bg-secondary/30 relative z-10">
                 <div className="container mx-auto px-4 max-w-6xl">
                     <div className="flex flex-col justify-center items-center mb-16">
-                        <h4 className="text-accent text-lg font-bold uppercase tracking-widest mb-2">About Me</h4>
-                        <h2 className="text-3xl font-bold text-white hidden">About Me</h2>
+                        <h2 className="text-3xl font-bold text-white">About Me</h2>
                     </div>
 
                     <div className="flex flex-col md:flex-row gap-12 items-center">
@@ -180,22 +178,22 @@ const Home = () => {
                         <div className="flex-1">
                             <h3 className="text-3xl font-bold text-white mb-2">Hi There! I'm {profile.name}</h3>
                             <h4 className="text-accent text-xl mb-6">{profile.title}</h4>
-                            <p className="text-gray-400 leading-relaxed mb-8 border-b border-white/10 pb-8">
+                            <p className="text-gray-300 leading-relaxed mb-8 border-b border-white/10 pb-8">
                                 {profile.summary}
                             </p>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 mb-8 text-sm">
                                 <div className="flex justify-between border-b border-white/5 pb-2">
                                     <span className="text-white font-medium">Phone</span>
-                                    <span className="text-gray-400">: {profile.phone}</span>
+                                    <span className="text-gray-300">: {profile.phone}</span>
                                 </div>
                                 <div className="flex justify-between border-b border-white/5 pb-2">
                                     <span className="text-white font-medium">Email</span>
-                                    <span className="text-gray-400">: {profile.email}</span>
+                                    <span className="text-gray-300">: {profile.email}</span>
                                 </div>
                                 <div className="flex justify-between border-b border-white/5 pb-2">
                                     <span className="text-white font-medium">Freelance</span>
-                                    <span className="text-gray-400">: Available</span>
+                                    <span className="text-gray-300">: Available</span>
                                 </div>
                             </div>
 
@@ -220,7 +218,7 @@ const Home = () => {
             </section>
 
             {/* Services/Skills Section */}
-            <section className="py-20 bg-primary">
+            <section className="py-20 bg-primary relative z-10">
                 <div className="container mx-auto px-4 max-w-6xl">
                     <div className="text-center mb-16">
                         <h4 className="text-accent text-sm font-bold uppercase tracking-widest mb-2">My Skills</h4>
@@ -248,7 +246,7 @@ const Home = () => {
             </section>
 
             {/* Featured Projects */}
-            <section id="projects" className="py-20 bg-secondary/20">
+            <section id="projects" className="py-20 bg-secondary/20 relative z-10">
                 <div className="container mx-auto px-4 max-w-6xl">
                     <div className="text-center mb-16">
                         <h4 className="text-accent text-sm font-bold uppercase tracking-widest mb-2">Portfolio</h4>
@@ -264,7 +262,7 @@ const Home = () => {
             </section>
 
             {/* Certifications Section */}
-            <section className="py-20 bg-primary/50 relative overflow-hidden">
+            <section className="py-20 bg-primary/50 relative overflow-hidden z-10">
                 {/* Background Decoration */}
                 <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
                 <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl -z-10 -translate-x-1/2 translate-y-1/2"></div>
@@ -293,7 +291,7 @@ const Home = () => {
                                         <h3 className="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
                                             {cert.name}
                                         </h3>
-                                        <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-sm text-gray-400">
+                                        <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-sm text-gray-300">
                                             <span className="flex items-center gap-1.5">
                                                 <Briefcase size={14} className="text-accent/70" />
                                                 {cert.issuer}
@@ -325,7 +323,7 @@ const Home = () => {
             </section>
 
             {/* Education & Experience */}
-            <section className="py-20 bg-primary">
+            <section className="py-20 bg-primary relative z-10">
                 <div className="container mx-auto px-4 max-w-6xl">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
                         {/* Education */}
@@ -337,8 +335,8 @@ const Home = () => {
                                         <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-accent"></div>
                                         <span className="text-xs text-accent font-bold uppercase tracking-wider mb-1 block">{edu.year}</span>
                                         <h4 className="text-xl font-bold text-white mb-1">{edu.degree}</h4>
-                                        <h5 className="text-gray-400 mb-4">{edu.institution}</h5>
-                                        <p className="text-gray-500 text-sm leading-relaxed">{edu.description}</p>
+                                        <h5 className="text-gray-300 mb-4">{edu.institution}</h5>
+                                        <p className="text-gray-400 text-sm leading-relaxed">{edu.description}</p>
                                     </div>
                                 ))}
                             </div>
@@ -353,8 +351,8 @@ const Home = () => {
                                         <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-accent"></div>
                                         <span className="text-xs text-accent font-bold uppercase tracking-wider mb-1 block">{exp.duration}</span>
                                         <h4 className="text-xl font-bold text-white mb-1">{exp.role}</h4>
-                                        <h5 className="text-gray-400 mb-4">{exp.company}</h5>
-                                        <p className="text-gray-500 text-sm leading-relaxed">{exp.description}</p>
+                                        <h5 className="text-gray-300 mb-4">{exp.company}</h5>
+                                        <p className="text-gray-400 text-sm leading-relaxed">{exp.description}</p>
                                     </div>
                                 ))}
                             </div>
@@ -362,13 +360,14 @@ const Home = () => {
                     </div>
                 </div>
             </section>
+
             {/* Contact Section */}
-            <section id="contact" className="py-20 bg-secondary/20">
+            <section id="contact" className="py-20 bg-secondary/20 relative z-10">
                 <div className="container mx-auto px-4 max-w-4xl">
                     <div className="text-center mb-16">
                         <h4 className="text-accent text-sm font-bold uppercase tracking-widest mb-2">Contact</h4>
                         <h2 className="text-3xl font-bold text-white">Get in Touch</h2>
-                        <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+                        <p className="text-gray-300 mt-4 max-w-2xl mx-auto">
                             Have a project in mind or want to discuss the latest tech? Feel free to send me a message!
                         </p>
                     </div>
@@ -388,7 +387,7 @@ const Home = () => {
                         }}>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label className="block text-gray-400 text-sm font-medium mb-2">Name</label>
+                                    <label className="block text-gray-300 text-sm font-medium mb-2">Name</label>
                                     <input
                                         type="text"
                                         name="name"
@@ -398,7 +397,7 @@ const Home = () => {
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-gray-400 text-sm font-medium mb-2">Email</label>
+                                    <label className="block text-gray-300 text-sm font-medium mb-2">Email</label>
                                     <input
                                         type="email"
                                         name="email"
@@ -409,7 +408,7 @@ const Home = () => {
                                 </div>
                             </div>
                             <div>
-                                <label className="block text-gray-400 text-sm font-medium mb-2">Message</label>
+                                <label className="block text-gray-300 text-sm font-medium mb-2">Message</label>
                                 <textarea
                                     name="message"
                                     required
