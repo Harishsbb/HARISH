@@ -87,7 +87,7 @@ const Home = () => {
                 <div className="hidden md:flex gap-8 text-sm font-medium text-gray-300">
                     <a href="#" className="text-accent">HOME</a>
                     <a href="#about" className="hover:text-accent transition-colors">ABOUT</a>
-                    <a href="#projects" className="hover:text-accent transition-colors">PORTFOLIO</a>
+                    <a href="#projects" className="hover:text-accent transition-colors">PROJECTS</a>
                     <a href="#contact" className="hover:text-accent transition-colors">CONTACT</a>
                 </div>
                 <div className="text-accent font-bold text-sm hidden md:flex items-center gap-2">
