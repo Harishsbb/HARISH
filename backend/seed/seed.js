@@ -34,7 +34,7 @@ const seedData = async () => {
             phone: '6369151728',
             linkedin: 'https://linkedin.com/in/harishk06944/',
             github: 'https://github.com/Harishsbb',
-            image: 'https://media.licdn.com/dms/image/v2/D5603AQFjksFLvqGUGg/profile-displayphoto-crop_800_800/B56ZmvfSdNIYAI-/0/1759585839487?e=1766620800&v=beta&t=5xOpY2HCvARDK4Omiv6042LXlYKAKk2LwK_OecXJjVk',
+            image: '/harish picture 2.jpeg',
             summary: 'Computer Science undergraduate specializing in Data Science and Full Stack Development. Skilled in Python, Java, SQL, Flask, and MERN stack, with strong knowledge of data structures and algorithms DSA, solving 250+ coding problems on platforms like LeetCode. Experienced in developing machine learning models (achieved up to 82% accuracy) and web applications through projects, certifications, and internships. Passionate about applying AI, ML, and web technologies to deliver scalable and impactful solutions.',
             skills: ['Python', 'Java', 'JavaScript', 'Express JS', 'Flask', 'Node JS', 'React JS', 'Pandas', 'NumPy', 'Scikit-Learn', 'MySQL', 'Mongo DB', 'Git', 'Postman', 'VS Code', 'Figma'],
             education: [
