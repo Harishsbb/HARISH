@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { SiPython, SiWhatsapp, SiJavascript, SiReact, SiNodedotjs, SiExpress, SiFlask, SiMysql, SiMongodb, SiGit, SiPostman, SiFigma, SiHtml5, SiCss3, SiBootstrap, SiScikitlearn, SiNumpy, SiPandas, SiDjango } from "react-icons/si";
 import { FaJava, FaNodeJs } from "react-icons/fa";
 import ProjectCard from '../components/ProjectCard';
+import MarvelCanvas from '../components/MarvelCanvas';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
@@ -87,14 +88,16 @@ const Home = () => {
                     <a href="#projects" className="hover:text-accent transition-colors">PORTFOLIO</a>
                     <a href="#contact" className="hover:text-accent transition-colors">CONTACT</a>
                 </div>
-                <div className="text-accent font-bold text-sm hidden md:block">
+                <div className="text-accent font-bold text-sm hidden md:flex items-center gap-2">
+                    <Phone size={16} className="text-accent" />
                     {profile.phone}
                 </div>
             </nav>
 
             {/* Hero Section */}
-            <section className="relative pt-12 md:pt-20 pb-20 md:pb-32 overflow-hidden px-4 md:px-12 max-w-7xl mx-auto">
-                <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
+            <section className="relative pt-12 md:pt-20 pb-20 md:pb-32 overflow-hidden px-4 md:px-12 max-w-7xl mx-auto min-h-screen flex items-center">
+                <MarvelCanvas />
+                <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 relative z-10 w-full">
                     {/* Left: Text */}
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
