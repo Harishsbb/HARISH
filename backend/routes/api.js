@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
-const nodemailer = require('nodemailer');
+const sendEmail = require('../email');
 
 const Profile = require('../models/Profile');
 const Project = require('../models/Project');
@@ -96,31 +96,13 @@ router.post('/contact', [
         });
         const contact = await newContact.save();
 
-        // Send Email (Mock or Real)
-        if (process.env.SMTP_HOST) {
-            const transporter = nodemailer.createTransport({
-                host: process.env.SMTP_HOST,
-                port: process.env.SMTP_PORT,
-                secure: false, // true for 465, false for other ports
-                auth: {
-                    user: process.env.SMTP_USER,
-                    pass: process.env.SMTP_PASS,
-                },
-            });
-
-            await transporter.sendMail({
-                from: `"${name}" <${email}>`, // sender address
-                to: process.env.ADMIN_EMAIL, // list of receivers
-                subject: "Portfolio Contact Form", // Subject line
-                text: message, // plain text body
-                html: `<p>Name: ${name}</p><p>Email: ${email}</p><p>Message: ${message}</p>`, // html body
-            });
-        }
+        // Send Email using email.js
+        await sendEmail({ name, email, message });
 
         res.json({ msg: 'Message sent', id: contact._id });
     } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
+        console.error(err);
+        res.status(500).json({ msg: 'Server Error', error: err.message });
     }
 });
 

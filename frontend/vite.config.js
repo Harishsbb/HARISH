@@ -8,3 +8,4 @@ export default defineConfig({
         include: ['@react-three/drei'],
     },
 })
+// Force restart to clear cache

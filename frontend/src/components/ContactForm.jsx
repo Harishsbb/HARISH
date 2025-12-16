@@ -1,31 +1,38 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
 const ContactForm = () => {
+    const form = useRef();
     const [formData, setFormData] = useState({
-        name: '',
-        email: '',
+        user_name: '',
+        user_email: '',
         message: ''
     });
     const [status, setStatus] = useState('idle');
 
     const mutation = useMutation({
-        mutationFn: (newContact) => {
-            return axios.post('http://localhost:5000/api/contact', newContact);
+        mutationFn: async () => {
+            const response = await axios.post('http://localhost:5000/api/contact', {
+                name: formData.user_name,
+                email: formData.user_email,
+                message: formData.message
+            });
+            return response.data;
         },
         onSuccess: () => {
             setStatus('success');
-            setFormData({ name: '', email: '', message: '' });
+            setFormData({ user_name: '', user_email: '', message: '' });
         },
-        onError: () => {
+        onError: (error) => {
+            console.error('Email Error:', error);
             setStatus('error');
         }
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        mutation.mutate(formData);
+        mutation.mutate();
     };
 
     const handleChange = (e) => {
@@ -33,7 +40,7 @@ const ContactForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-lg mx-auto bg-secondary p-8 rounded-lg shadow-lg">
+        <form ref={form} onSubmit={handleSubmit} className="max-w-lg mx-auto bg-secondary p-8 rounded-lg shadow-lg">
             <h2 className="text-2xl font-bold mb-6 text-white">Get in Touch</h2>
 
             {status === 'success' && (
@@ -48,28 +55,30 @@ const ContactForm = () => {
             )}
 
             <div className="mb-4">
-                <label htmlFor="name" className="block text-gray-300 mb-2">Name</label>
+                <label htmlFor="user_name" className="block text-gray-300 mb-2">Name</label>
                 <input
                     type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
+                    id="user_name"
+                    name="user_name"
+                    value={formData.user_name}
                     onChange={handleChange}
                     required
                     className="w-full bg-primary border border-slate-600 rounded p-2 text-white focus:border-accent focus:outline-none"
+                    placeholder="Your Name"
                 />
             </div>
 
             <div className="mb-4">
-                <label htmlFor="email" className="block text-gray-300 mb-2">Email</label>
+                <label htmlFor="user_email" className="block text-gray-300 mb-2">Email</label>
                 <input
                     type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
+                    id="user_email"
+                    name="user_email"
+                    value={formData.user_email}
                     onChange={handleChange}
                     required
                     className="w-full bg-primary border border-slate-600 rounded p-2 text-white focus:border-accent focus:outline-none"
+                    placeholder="Your Email"
                 />
             </div>
 
@@ -83,6 +92,7 @@ const ContactForm = () => {
                     required
                     rows={4}
                     className="w-full bg-primary border border-slate-600 rounded p-2 text-white focus:border-accent focus:outline-none"
+                    placeholder="Your Message..."
                 ></textarea>
             </div>
 
