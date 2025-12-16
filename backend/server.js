@@ -27,8 +27,11 @@ app.use(limiter);
 
 // Database Connection
 mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log('MongoDB Connected'))
-    .catch(err => console.error('MongoDB Connection Error:', err));
+    .then(() => console.log('MongoDB Connected Successfully to: ' + process.env.MONGO_URI.split('@')[1])) // Log only the host part for security
+    .catch(err => {
+        console.error('MongoDB Connection Error Detailed:', err);
+        console.error('Check your MONGO_URI environment variable in Vercel.');
+    });
 
 // Routes
 app.get('/', (req, res) => {
