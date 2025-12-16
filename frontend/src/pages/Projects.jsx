@@ -4,7 +4,8 @@ import axios from 'axios';
 import ProjectCard from '../components/ProjectCard';
 
 const fetchProjects = async (filter) => {
-    const { data } = await axios.get(`http://localhost:5000/api/projects${filter}`);
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    const { data } = await axios.get(`${API_URL}/api/projects${filter}`);
     return data;
 };
 

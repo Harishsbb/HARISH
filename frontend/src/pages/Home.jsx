@@ -7,15 +7,15 @@ import { FaJava, FaNodeJs } from "react-icons/fa";
 import ProjectCard from '../components/ProjectCard';
 import Dark3DBackground from '../components/Dark3DBackground';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 const fetchFeaturedProjects = async () => {
-    const { data } = await axios.get(`${API_URL}/projects?featured=true`);
+    const { data } = await axios.get(`${API_URL}/api/projects?featured=true`);
     return data;
 };
 
 const fetchProfile = async () => {
-    const { data } = await axios.get(`${API_URL}/profile`);
+    const { data } = await axios.get(`${API_URL}/api/profile`);
     return data;
 };
 
@@ -370,7 +370,7 @@ const Home = () => {
                             const formData = new FormData(e.target);
                             const data = Object.fromEntries(formData.entries());
                             try {
-                                await axios.post(`${API_URL}/contact`, data);
+                                await axios.post(`${API_URL}/api/contact`, data);
                                 alert('Message sent successfully!');
                                 e.target.reset();
                             } catch (error) {
