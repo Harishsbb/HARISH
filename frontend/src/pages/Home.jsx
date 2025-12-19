@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { Mail, Phone, Linkedin, Github, Code, GraduationCap, Briefcase, Award, Globe, ExternalLink, Download } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { SiPython, SiWhatsapp, SiJavascript, SiReact, SiNodedotjs, SiExpress, SiFlask, SiMysql, SiMongodb, SiGit, SiPostman, SiFigma, SiHtml5, SiCss3, SiBootstrap, SiScikitlearn, SiNumpy, SiPandas, SiDjango } from "react-icons/si";
+import { SiPython, SiWhatsapp, SiJavascript, SiReact, SiNodedotjs, SiExpress, SiFlask, SiMysql, SiMongodb, SiGit, SiPostman, SiFigma, SiHtml5, SiCss3, SiBootstrap, SiScikitlearn, SiNumpy, SiPandas, SiDjango, SiThreedotjs } from "react-icons/si";
 import { FaJava, FaNodeJs } from "react-icons/fa";
 import ProjectCard from '../components/ProjectCard';
 import Dark3DBackground from '../components/Dark3DBackground';
@@ -29,6 +29,7 @@ const getSkillIcon = (skillName) => {
 
     // Frontend
     if (lowerSkill.includes('react')) return { icon: <SiReact size={40} />, color: "text-cyan-400" };
+    if (lowerSkill.includes('three')) return { icon: <SiThreedotjs size={40} />, color: "text-white" };
     if (lowerSkill.includes('html')) return { icon: <SiHtml5 size={40} />, color: "text-orange-500" };
     if (lowerSkill.includes('css')) return { icon: <SiCss3 size={40} />, color: "text-blue-500" };
     if (lowerSkill.includes('bootstrap')) return { icon: <SiBootstrap size={40} />, color: "text-purple-600" };
@@ -113,20 +114,21 @@ const Home = () => {
                         <h2 className="text-xl md:text-3xl text-gray-300 mb-6 md:mb-8 font-light">
                             {profile.title}
                         </h2>
-                        <motion.button
+                        <motion.a
+                            href="#contact"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="bg-accent text-primary px-6 md:px-8 py-2 md:py-3 rounded-full font-bold text-base md:text-lg shadow-lg hover:shadow-accent/50 transition-all"
+                            className="bg-accent text-primary px-6 md:px-8 py-2 md:py-3 rounded-full font-bold text-base md:text-lg shadow-lg hover:shadow-accent/50 transition-all inline-block cursor-pointer"
                         >
                             Hire me
-                        </motion.button>
+                        </motion.a>
 
                         {/* Social Icons */}
                         <div className="mt-8 md:mt-12 flex gap-4 justify-center md:justify-start">
                             {[
                                 { icon: <Linkedin size={20} />, href: profile.linkedin },
                                 { icon: <Github size={20} />, href: profile.github },
-                                { icon: <Mail size={20} />, href: `mailto:${profile.email}` },
+                                { icon: <Mail size={20} />, href: `https://mail.google.com/mail/?view=cm&fs=1&to=${profile.email}` },
                                 { icon: <Phone size={20} />, href: `tel:${profile.phone}` }
                             ].map((item, i) => (
                                 <a key={i} href={item.href} target="_blank" rel="noopener noreferrer" className="p-3 border border-white/10 rounded-full text-gray-300 hover:text-accent hover:border-accent transition-all">
@@ -191,8 +193,8 @@ const Home = () => {
 
                             <div className="flex gap-4">
                                 <a
-                                    href="/HARISH K RESUME 4.12.2025.pdf"
-                                    download="HARISH K RESUME 4.12.2025.pdf"
+                                    href="/HarishK Resume(2025).pdf"
+                                    download="HarishK Resume(2025).pdf"
                                     className="inline-block bg-accent text-primary px-8 py-3 rounded-full font-bold text-sm hover:opacity-90 transition-opacity"
                                 >
                                     Download CV
