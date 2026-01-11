@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Stars, Cloud, Float, Sparkles } from '@react-three/drei';
@@ -46,7 +45,6 @@ const Dark3DBackground = () => {
                 <FloatingParticles />
 
                 <Stars radius={100} depth={50} count={7000} factor={4} saturation={0} fade speed={0.5} />
-                <FlyingHero />
             </Canvas>
         </div>
     );

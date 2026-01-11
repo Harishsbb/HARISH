@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import harishProfile from '../assets/harish_profile_dark.png';
 import axios from 'axios';
 import { Mail, Phone, Linkedin, Github, Code, GraduationCap, Briefcase, Award, Globe, ExternalLink, Download } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -107,18 +108,20 @@ const Home = () => {
                         transition={{ duration: 0.8 }}
                         className="flex-1 text-center md:text-left z-10 w-full"
                     >
-                        <h3 className="text-accent text-lg md:text-2xl font-medium mb-2 md:mb-4">Hello, I'm</h3>
-                        <h1 className="text-5xl md:text-8xl font-bold text-white mb-4 md:mb-6 leading-tight tracking-tight break-words">
-                            {profile.name}
+                        <h3 className="text-accent text-lg md:text-2xl font-medium mb-2 md:mb-4 tracking-wide">Hello, I'm</h3>
+                        <h1 className="text-6xl md:text-8xl font-bold mb-4 md:mb-6 leading-tight tracking-tight break-words">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-white to-accent animate-gradient bg-300%">
+                                {profile.name}
+                            </span>
                         </h1>
-                        <h2 className="text-xl md:text-3xl text-gray-300 mb-6 md:mb-8 font-light">
+                        <h2 className="text-xl md:text-3xl text-gray-200 mb-6 md:mb-8 font-light tracking-wide">
                             {profile.title}
                         </h2>
                         <motion.a
                             href="#contact"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="bg-accent text-primary px-6 md:px-8 py-2 md:py-3 rounded-full font-bold text-base md:text-lg shadow-lg hover:shadow-accent/50 transition-all inline-block cursor-pointer"
+                            className="bg-gradient-to-r from-accent to-yellow-600 text-primary px-8 md:px-10 py-3 md:py-4 rounded-full font-bold text-base md:text-lg shadow-lg hover:shadow-accent/50 transition-all inline-block cursor-pointer"
                         >
                             Hire me
                         </motion.a>
@@ -131,7 +134,7 @@ const Home = () => {
                                 { icon: <Mail size={20} />, href: `https://mail.google.com/mail/?view=cm&fs=1&to=${profile.email}` },
                                 { icon: <Phone size={20} />, href: `tel:${profile.phone}` }
                             ].map((item, i) => (
-                                <a key={i} href={item.href} target="_blank" rel="noopener noreferrer" className="p-3 border border-white/10 rounded-full text-gray-300 hover:text-accent hover:border-accent transition-all">
+                                <a key={i} href={item.href} target="_blank" rel="noopener noreferrer" className="p-3 border border-white/20 bg-white/5 rounded-full text-gray-300 hover:text-accent hover:border-accent hover:bg-white/10 transition-all backdrop-blur-sm">
                                     {item.icon}
                                 </a>
                             ))}
@@ -143,18 +146,24 @@ const Home = () => {
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="flex-1 relative"
+                        className="flex-1 relative flex justify-center md:justify-end"
                     >
-                        <div className="relative z-10 w-full max-w-md mx-auto aspect-square rounded-full md:rounded-lg overflow-hidden border-4 border-white/5 shadow-2xl">
+                        <div className="relative z-10 w-full max-w-[300px] md:max-w-[420px] aspect-[3/4] group relative">
                             <img
-                                src={profile.image}
+                                src={harishProfile}
                                 alt={profile.name}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                                style={{
+                                    maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
+                                    WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)'
+                                }}
                             />
+                            {/* Subtle Glow behind to separate from dark bg */}
+                            <div className="absolute inset-0 bg-accent/5 blur-3xl -z-10 rounded-full opacity-50"></div>
                         </div>
                         {/* Decorative Blob */}
-                        <div className="absolute -top-10 -right-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl -z-0"></div>
-                        <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -z-0"></div>
+                        <div className="absolute -top-10 -right-10 w-72 h-72 bg-accent/20 rounded-full blur-[80px] -z-0"></div>
+                        <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-blue-500/20 rounded-full blur-[80px] -z-0"></div>
                     </motion.div>
                 </div>
             </section>
