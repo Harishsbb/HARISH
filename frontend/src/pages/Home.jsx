@@ -148,18 +148,14 @@ const Home = () => {
                         transition={{ duration: 0.8, delay: 0.2 }}
                         className="flex-1 relative flex justify-center md:justify-end"
                     >
-                        <div className="relative z-10 w-full max-w-[300px] md:max-w-[420px] aspect-[3/4] group relative">
+                        <div className="relative z-10 w-64 h-64 md:w-full md:h-auto md:max-w-[420px] md:aspect-[3/4] rounded-full md:rounded-none overflow-hidden md:overflow-visible border-4 border-accent/20 md:border-0 shadow-2xl shadow-accent/20 md:shadow-none group relative mx-auto md:mx-0">
                             <img
                                 src={harishProfile}
                                 alt={profile.name}
-                                className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out"
-                                style={{
-                                    maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
-                                    WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)'
-                                }}
+                                className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out md:[mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)] md:[webkit-mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
                             />
-                            {/* Subtle Glow behind to separate from dark bg */}
-                            <div className="absolute inset-0 bg-accent/5 blur-3xl -z-10 rounded-full opacity-50"></div>
+                            {/* Subtle Glow behind to separate from dark bg - Desktop only */}
+                            <div className="absolute inset-0 bg-accent/5 blur-3xl -z-10 rounded-full opacity-50 hidden md:block"></div>
                         </div>
                         {/* Decorative Blob */}
                         <div className="absolute -top-10 -right-10 w-72 h-72 bg-accent/20 rounded-full blur-[80px] -z-0"></div>
