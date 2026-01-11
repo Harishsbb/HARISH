@@ -25,7 +25,7 @@ const updateProjects = async () => {
         // 2. Self Shopping Smart Trolley (Should be 2nd)
         // Set to today + 5 hours
         const date2 = new Date();
-        date2.setHours(date2.getHours() + 5);
+        date2.setFullYear(2030);
 
         await Project.findOneAndUpdate(
             { title: { $regex: 'Smart Trolley', $options: 'i' } },
