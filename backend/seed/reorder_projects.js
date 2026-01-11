@@ -31,7 +31,8 @@ const updateProjects = async () => {
             { title: { $regex: 'Smart Trolley', $options: 'i' } },
             {
                 date: date2,
-                demoUrl: 'https://trolley-frontend-lemon.vercel.app/'
+                demoUrl: 'https://trolley-frontend-lemon.vercel.app/',
+                repoUrl: 'https://github.com/Harishsbb/trolley'
             }
         );
         console.log('Updated Smart Trolley');
