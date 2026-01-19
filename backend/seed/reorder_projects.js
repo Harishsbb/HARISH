@@ -19,25 +19,25 @@ const updateProjects = async () => {
         );
         console.log('Updated Clinic Booking System');
 
-        // 2. Self Shopping Smart Trolley (Should be 2nd)
+        // 2. Solo Leveling Todo (Should be 2nd)
+        await Project.findOneAndUpdate(
+            { title: { $regex: 'Solo Leveling', $options: 'i' } },
+            {
+                date: new Date('2026-01-19T09:00:00Z')
+            }
+        );
+        console.log('Updated Solo Leveling');
+
+        // 3. Self Shopping Smart Trolley (Should be 3rd)
         await Project.findOneAndUpdate(
             { title: { $regex: 'Smart Trolley', $options: 'i' } },
             {
-                date: new Date('2026-01-19T09:00:00Z'),
+                date: new Date('2026-01-19T08:00:00Z'),
                 demoUrl: 'https://trolley-frontend-lemon.vercel.app/',
                 repoUrl: 'https://github.com/Harishsbb/trolley'
             }
         );
         console.log('Updated Smart Trolley');
-
-        // 3. Solo Leveling Todo (Should be 3rd)
-        await Project.findOneAndUpdate(
-            { title: { $regex: 'Solo Leveling', $options: 'i' } },
-            {
-                date: new Date('2026-01-19T08:00:00Z')
-            }
-        );
-        console.log('Updated Solo Leveling');
 
         // 4. Bank Management System (Should be 4th)
         await Project.findOneAndUpdate(

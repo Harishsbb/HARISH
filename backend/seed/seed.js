@@ -93,17 +93,6 @@ const seedData = async () => {
                 date: new Date('2026-01-19T10:00:00Z')
             },
             {
-                title: 'Self Shopping Smart Trolley (SIH 2024)',
-                shortDescription: 'Smart trolley with automated billing.',
-                longDescription: 'Developed a smart shopping trolley prototype automating billing and inventory tracking, reducing checkout time by 40%. Achieved 80% feature completion collaboratively in a team of 6 members. Integrated automated billing system to enhance user convenience and minimize manual errors. Demonstrated prototype in a live environment, highlighting efficiency and usability improvements.',
-                tech: ['Python', 'Flask', 'React Js', 'MySQL'],
-                repoUrl: 'https://github.com/Harishsbb/trolley',
-                demoUrl: 'https://trolley-frontend-lemon.vercel.app/',
-                image: '/project-trolley.png',
-                featured: true,
-                date: new Date('2026-01-19T09:00:00Z')
-            },
-            {
                 title: 'Solo Leveling Todo',
                 shortDescription: 'Task management application.',
                 longDescription: 'A dynamic todo list application inspired by the Solo Leveling series. Features task creation, deletion, and status management with a responsive interface.',
@@ -111,6 +100,17 @@ const seedData = async () => {
                 repoUrl: 'https://github.com/Harishsbb/solo-leveling-todo1',
                 demoUrl: 'https://solo-leveling-todo1.vercel.app',
                 image: '/solo-leveling-todo.png',
+                featured: true,
+                date: new Date('2026-01-19T09:00:00Z')
+            },
+            {
+                title: 'Self Shopping Smart Trolley (SIH 2024)',
+                shortDescription: 'Smart trolley with automated billing.',
+                longDescription: 'Developed a smart shopping trolley prototype automating billing and inventory tracking, reducing checkout time by 40%. Achieved 80% feature completion collaboratively in a team of 6 members. Integrated automated billing system to enhance user convenience and minimize manual errors. Demonstrated prototype in a live environment, highlighting efficiency and usability improvements.',
+                tech: ['Python', 'Flask', 'React Js', 'MySQL'],
+                repoUrl: 'https://github.com/Harishsbb/trolley',
+                demoUrl: 'https://trolley-frontend-lemon.vercel.app/',
+                image: '/project-trolley.png',
                 featured: true,
                 date: new Date('2026-01-19T08:00:00Z')
             },
