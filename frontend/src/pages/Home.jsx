@@ -1,0 +1,434 @@
+import { useQuery } from '@tanstack/react-query';
+import harishProfile from '../assets/harish_profile_dark.png';
+import axios from 'axios';
+import { Mail, Phone, Linkedin, Github, Code, GraduationCap, Briefcase, Award, Globe, ExternalLink, Download } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { SiPython, SiWhatsapp, SiJavascript, SiReact, SiNodedotjs, SiExpress, SiFlask, SiMysql, SiMongodb, SiGit, SiPostman, SiFigma, SiHtml5, SiCss3, SiBootstrap, SiScikitlearn, SiNumpy, SiPandas, SiDjango, SiThreedotjs } from "react-icons/si";
+import { FaJava, FaNodeJs } from "react-icons/fa";
+import ProjectCard from '../components/ProjectCard';
+import Dark3DBackground from '../components/Dark3DBackground';
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+const fetchFeaturedProjects = async () => {
+    const { data } = await axios.get(`${API_URL}/api/projects?featured=true`);
+    return data;
+};
+
+const fetchProfile = async () => {
+    const { data } = await axios.get(`${API_URL}/api/profile`);
+    return data;
+};
+
+const getSkillIcon = (skillName) => {
+    const lowerSkill = skillName.toLowerCase();
+
+    // Programming Languages
+    if (lowerSkill.includes('python')) return { icon: <SiPython size={40} />, color: "text-blue-500" };
+    if (lowerSkill.includes('java') && !lowerSkill.includes('script')) return { icon: <FaJava size={40} />, color: "text-red-500" };
+    if (lowerSkill.includes('javascript') || lowerSkill.includes('js')) return { icon: <SiJavascript size={40} />, color: "text-yellow-400" };
+
+    // Frontend
+    if (lowerSkill.includes('react')) return { icon: <SiReact size={40} />, color: "text-cyan-400" };
+    if (lowerSkill.includes('three')) return { icon: <SiThreedotjs size={40} />, color: "text-white" };
+    if (lowerSkill.includes('html')) return { icon: <SiHtml5 size={40} />, color: "text-orange-500" };
+    if (lowerSkill.includes('css')) return { icon: <SiCss3 size={40} />, color: "text-blue-500" };
+    if (lowerSkill.includes('bootstrap')) return { icon: <SiBootstrap size={40} />, color: "text-purple-600" };
+    if (lowerSkill.includes('figma')) return { icon: <SiFigma size={40} />, color: "text-pink-500" };
+
+    // Backend
+    if (lowerSkill.includes('node')) return { icon: <FaNodeJs size={40} />, color: "text-green-500" };
+    if (lowerSkill.includes('express')) return { icon: <SiExpress size={40} />, color: "text-gray-300" };
+    if (lowerSkill.includes('flask')) return { icon: <SiFlask size={40} />, color: "text-white" };
+    if (lowerSkill.includes('django')) return { icon: <SiDjango size={40} />, color: "text-green-800" };
+
+    // Data Science / ML
+    if (lowerSkill.includes('pandas')) return { icon: <SiPandas size={40} />, color: "text-indigo-400" };
+    if (lowerSkill.includes('numpy')) return { icon: <SiNumpy size={40} />, color: "text-cyan-600" };
+    if (lowerSkill.includes('scikit')) return { icon: <SiScikitlearn size={40} />, color: "text-orange-400" };
+
+    // Database
+    if (lowerSkill.includes('sql') || lowerSkill.includes('mysql')) return { icon: <SiMysql size={40} />, color: "text-blue-400" };
+    if (lowerSkill.includes('mongo')) return { icon: <SiMongodb size={40} />, color: "text-green-500" };
+
+    // Tools
+    if (lowerSkill.includes('git')) return { icon: <SiGit size={40} />, color: "text-orange-500" };
+    if (lowerSkill.includes('postman')) return { icon: <SiPostman size={40} />, color: "text-orange-600" };
+    if (lowerSkill.includes('vscode') || lowerSkill.includes('code')) return { icon: <Code size={40} />, color: "text-blue-500" };
+
+    return { icon: <Globe size={40} />, color: "text-gray-300" };
+};
+
+const Home = () => {
+    const { data: projects, isLoading: projectsLoading } = useQuery({
+        queryKey: ['featuredProjects'],
+        queryFn: fetchFeaturedProjects
+    });
+
+    const { data: profile, isLoading: profileLoading } = useQuery({
+        queryKey: ['profile'],
+        queryFn: fetchProfile
+    });
+
+    if (profileLoading || projectsLoading) {
+        return <div className="flex justify-center items-center h-screen text-accent font-bold text-xl">Loading...</div>;
+    }
+
+    if (!profile) return <div className="text-center py-20 text-white">Profile not found.</div>;
+
+    return (
+        <div className="bg-primary min-h-screen font-sans text-gray-300 relative">
+            <Dark3DBackground />
+
+            {/* Integrated Navbar */}
+            <nav className="py-6 px-4 md:px-12 flex justify-between items-center max-w-7xl mx-auto relative z-10">
+                <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-primary font-bold">H</div>
+                    <span className="text-xl font-bold text-white">Harish</span>
+                </div>
+                <div className="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+                    <a href="#" className="text-accent">HOME</a>
+                    <a href="#about" className="hover:text-accent transition-colors">ABOUT</a>
+                    <a href="#projects" className="hover:text-accent transition-colors">PROJECTS</a>
+                    <a href="#contact" className="hover:text-accent transition-colors">CONTACT</a>
+                </div>
+                <div className="text-accent font-bold text-sm hidden md:flex items-center gap-2">
+                    <Phone size={16} className="text-accent" />
+                    {profile.phone}
+                </div>
+            </nav>
+
+            {/* Hero Section */}
+            <section className="relative pt-12 md:pt-20 pb-20 md:pb-32 overflow-hidden px-4 md:px-12 max-w-7xl mx-auto min-h-screen flex items-center">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 relative z-10 w-full">
+                    {/* Left: Text */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8 }}
+                        className="flex-1 text-center md:text-left z-10 w-full"
+                    >
+                        <h3 className="text-accent text-lg md:text-2xl font-medium mb-2 md:mb-4 tracking-wide">Hello, I'm</h3>
+                        <h1 className="text-6xl md:text-8xl font-bold mb-4 md:mb-6 leading-tight tracking-tight break-words">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-white to-accent animate-gradient bg-300%">
+                                {profile.name}
+                            </span>
+                        </h1>
+                        <h2 className="text-xl md:text-3xl text-gray-200 mb-6 md:mb-8 font-light tracking-wide">
+                            {profile.title}
+                        </h2>
+                        <motion.a
+                            href="#contact"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="bg-gradient-to-r from-accent to-yellow-600 text-primary px-8 md:px-10 py-3 md:py-4 rounded-full font-bold text-base md:text-lg shadow-lg hover:shadow-accent/50 transition-all inline-block cursor-pointer"
+                        >
+                            Hire me
+                        </motion.a>
+
+                        {/* Social Icons */}
+                        <div className="mt-8 md:mt-12 flex gap-4 justify-center md:justify-start">
+                            {[
+                                { icon: <Linkedin size={20} />, href: profile.linkedin },
+                                { icon: <Github size={20} />, href: profile.github },
+                                { icon: <Mail size={20} />, href: `https://mail.google.com/mail/?view=cm&fs=1&to=${profile.email}` },
+                                { icon: <Phone size={20} />, href: `tel:${profile.phone}` }
+                            ].map((item, i) => (
+                                <a key={i} href={item.href} target="_blank" rel="noopener noreferrer" className="p-3 border border-white/20 bg-white/5 rounded-full text-gray-300 hover:text-accent hover:border-accent hover:bg-white/10 transition-all backdrop-blur-sm">
+                                    {item.icon}
+                                </a>
+                            ))}
+                        </div>
+                    </motion.div>
+
+                    {/* Right: Image */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="flex-1 relative flex justify-center md:justify-end"
+                    >
+                        <div className="relative z-10 w-64 h-64 md:w-full md:h-auto md:max-w-[420px] md:aspect-[3/4] rounded-full md:rounded-none overflow-hidden md:overflow-visible border-4 border-accent/20 md:border-0 shadow-2xl shadow-accent/20 md:shadow-none group relative mx-auto md:mx-0">
+                            <img
+                                src={harishProfile}
+                                alt={profile.name}
+                                className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out md:[mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)] md:[webkit-mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
+                            />
+                            {/* Subtle Glow behind to separate from dark bg - Desktop only */}
+                            <div className="absolute inset-0 bg-accent/5 blur-3xl -z-10 rounded-full opacity-50 hidden md:block"></div>
+                        </div>
+                        {/* Decorative Blob */}
+                        <div className="absolute -top-10 -right-10 w-72 h-72 bg-accent/20 rounded-full blur-[80px] -z-0"></div>
+                        <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-blue-500/20 rounded-full blur-[80px] -z-0"></div>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* About Me Section */}
+            <section id="about" className="py-20 bg-secondary/30 relative z-10">
+                <div className="container mx-auto px-4 max-w-6xl">
+                    <div className="flex flex-col justify-center items-center mb-16">
+                        <h2 className="text-3xl font-bold text-white">About Me</h2>
+                    </div>
+
+                    <div className="flex flex-col md:flex-row gap-12 items-center">
+
+
+                        <div className="flex-1">
+                            <h3 className="text-3xl font-bold text-white mb-2">Hi There! I'm {profile.name}</h3>
+                            <h4 className="text-accent text-xl mb-6">{profile.title}</h4>
+                            <p className="text-gray-300 leading-relaxed mb-8 border-b border-white/10 pb-8">
+                                {profile.summary}
+                            </p>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 mb-8 text-sm">
+                                <div className="flex justify-between border-b border-white/5 pb-2">
+                                    <span className="text-white font-medium">Phone</span>
+                                    <span className="text-gray-300">: {profile.phone}</span>
+                                </div>
+                                <div className="flex justify-between border-b border-white/5 pb-2">
+                                    <span className="text-white font-medium">Email</span>
+                                    <span className="text-gray-300">: {profile.email}</span>
+                                </div>
+                                <div className="flex justify-between border-b border-white/5 pb-2">
+                                    <span className="text-white font-medium">Freelance</span>
+                                    <span className="text-gray-300">: Available</span>
+                                </div>
+                            </div>
+
+                            <div className="flex gap-4">
+                                <a
+                                    href="/Harish_Resume.pdf"
+                                    download="HARISH RESUME (19.01.2026).pdf"
+                                    className="inline-block bg-accent text-primary px-8 py-3 rounded-full font-bold text-sm hover:opacity-90 transition-opacity"
+                                >
+                                    Download CV
+                                </a>
+                                <a
+                                    href="#contact"
+                                    className="inline-block border-2 border-accent text-accent px-8 py-3 rounded-full font-bold text-sm hover:bg-accent hover:text-primary transition-all"
+                                >
+                                    Get in Touch
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Services/Skills Section */}
+            <section className="py-20 bg-primary relative z-10">
+                <div className="container mx-auto px-4 max-w-6xl">
+                    <div className="text-center mb-16">
+                        <h4 className="text-accent text-sm font-bold uppercase tracking-widest mb-2">My Skills</h4>
+                        <h2 className="text-3xl font-bold text-white">Technical Expertise</h2>
+                    </div>
+
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                        {profile.skills.map((skill, index) => {
+                            const { icon, color } = getSkillIcon(skill);
+                            return (
+                                <motion.div
+                                    key={index}
+                                    whileHover={{ y: -5 }}
+                                    className="bg-secondary/30 p-8 rounded-lg flex flex-col items-center gap-4 border border-white/5 hover:border-accent/30 transition-all group"
+                                >
+                                    <div className={`text-4xl ${color} group-hover:scale-110 transition-transform`}>
+                                        {icon}
+                                    </div>
+                                    <span className="text-white font-medium text-center">{skill}</span>
+                                </motion.div>
+                            );
+                        })}
+                    </div>
+                </div>
+            </section>
+
+            {/* Featured Projects */}
+            <section id="projects" className="py-20 bg-secondary/20 relative z-10">
+                <div className="container mx-auto px-4 max-w-6xl">
+                    <div className="text-center mb-16">
+                        <h4 className="text-accent text-sm font-bold uppercase tracking-widest mb-2">Portfolio</h4>
+                        <h2 className="text-3xl font-bold text-white"> Projects</h2>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {projects?.map((project) => (
+                            <ProjectCard key={project._id} project={project} />
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Certifications Section */}
+            <section className="py-20 bg-primary/50 relative overflow-hidden z-10">
+                {/* Background Decoration */}
+                <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
+                <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl -z-10 -translate-x-1/2 translate-y-1/2"></div>
+
+                <div className="container mx-auto px-4 max-w-4xl relative z-10">
+                    <div className="text-center mb-12">
+                        <h4 className="text-accent text-sm font-bold uppercase tracking-widest mb-2">Credentials</h4>
+                        <h2 className="text-3xl font-bold text-white">Certifications</h2>
+                    </div>
+
+                    <div className="bg-secondary/40 backdrop-blur-sm rounded-2xl p-6 md:p-10 border border-white/5 shadow-2xl">
+                        <div className="space-y-4">
+                            {profile.certifications?.map((cert, index) => (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.1 }}
+                                    key={index}
+                                    className="group flex flex-col md:flex-row md:items-center gap-4 p-5 md:p-6 bg-primary/40 hover:bg-white/5 rounded-xl transition-all duration-300 border border-white/5 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5"
+                                >
+                                    <div className="min-w-fit mt-1 text-accent p-3 bg-accent/10 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                                        <Award size={28} />
+                                    </div>
+                                    <div className="flex-grow">
+                                        <h3 className="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
+                                            {cert.name}
+                                        </h3>
+                                        <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-sm text-gray-300">
+                                            <span className="flex items-center gap-1.5">
+                                                <Briefcase size={14} className="text-accent/70" />
+                                                {cert.issuer}
+                                            </span>
+                                            <span className="hidden sm:inline w-1 h-1 rounded-full bg-gray-600"></span>
+                                            <span className="flex items-center gap-1.5">
+                                                <GraduationCap size={14} className="text-accent/70" />
+                                                {cert.date}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    {/* Action Button - Optional if URL exists */}
+                                    {cert.url && cert.url !== '#' && (
+                                        <a
+                                            href={cert.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="self-start md:self-center ml-auto px-4 py-2 bg-white/5 text-gray-300 rounded-lg text-sm font-medium hover:bg-accent hover:text-primary transition-all flex items-center gap-2 group/btn"
+                                        >
+                                            View
+                                            <ExternalLink size={14} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                                        </a>
+                                    )}
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Education & Experience */}
+            <section className="py-20 bg-primary relative z-10">
+                <div className="container mx-auto px-4 max-w-6xl">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                        {/* Education */}
+                        <div>
+                            <h3 className="text-2xl font-bold text-white mb-8 border-b-2 border-accent inline-block pb-2">Education</h3>
+                            <div className="space-y-8">
+                                {profile.education.map((edu, index) => (
+                                    <div key={index} className="pl-8 border-l-2 border-white/10 relative">
+                                        <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-accent"></div>
+                                        <span className="text-xs text-accent font-bold uppercase tracking-wider mb-1 block">{edu.year}</span>
+                                        <h4 className="text-xl font-bold text-white mb-1">{edu.degree}</h4>
+                                        <h5 className="text-gray-300 mb-4">{edu.institution}</h5>
+                                        <p className="text-gray-400 text-sm leading-relaxed">{edu.description}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Experience */}
+                        <div>
+                            <h3 className="text-2xl font-bold text-white mb-8 border-b-2 border-accent inline-block pb-2">Experience</h3>
+                            <div className="space-y-8">
+                                {profile.experience.map((exp, index) => (
+                                    <div key={index} className="pl-8 border-l-2 border-white/10 relative">
+                                        <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-accent"></div>
+                                        <span className="text-xs text-accent font-bold uppercase tracking-wider mb-1 block">{exp.duration}</span>
+                                        <h4 className="text-xl font-bold text-white mb-1">{exp.role}</h4>
+                                        <h5 className="text-gray-300 mb-4">{exp.company}</h5>
+                                        <p className="text-gray-400 text-sm leading-relaxed">{exp.description}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Contact Section */}
+            <section id="contact" className="py-20 bg-secondary/20 relative z-10">
+                <div className="container mx-auto px-4 max-w-4xl">
+                    <div className="text-center mb-16">
+                        <h4 className="text-accent text-sm font-bold uppercase tracking-widest mb-2">Contact</h4>
+                        <h2 className="text-3xl font-bold text-white">Get in Touch</h2>
+                        <p className="text-gray-300 mt-4 max-w-2xl mx-auto">
+                            Have a project in mind or want to discuss the latest tech? Feel free to send me a message!
+                        </p>
+                    </div>
+
+                    <div className="bg-primary/50 backdrop-blur-md rounded-2xl p-8 md:p-12 border border-white/5 shadow-2xl">
+                        <form className="space-y-6" onSubmit={async (e) => {
+                            e.preventDefault();
+                            const formData = new FormData(e.target);
+                            const data = Object.fromEntries(formData.entries());
+                            try {
+                                await axios.post(`${API_URL}/api/contact`, data);
+                                alert('Message sent successfully!');
+                                e.target.reset();
+                            } catch (error) {
+                                alert('Failed to send message. Please try again.');
+                            }
+                        }}>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label className="block text-gray-300 text-sm font-medium mb-2">Name</label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        required
+                                        className="w-full bg-secondary/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors"
+                                        placeholder="Your Name"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-gray-300 text-sm font-medium mb-2">Email</label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        required
+                                        className="w-full bg-secondary/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors"
+                                        placeholder="Your Email"
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <label className="block text-gray-300 text-sm font-medium mb-2">Message</label>
+                                <textarea
+                                    name="message"
+                                    required
+                                    rows="4"
+                                    className="w-full bg-secondary/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors resize-none"
+                                    placeholder="Your Message..."
+                                ></textarea>
+                            </div>
+                            <button
+                                type="submit"
+                                className="w-full bg-accent text-primary font-bold py-4 rounded-lg hover:opacity-90 transition-all flex items-center justify-center gap-2 group"
+                            >
+                                Send Message
+                                <Mail size={18} className="group-hover:translate-x-1 transition-transform" />
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    );
+};
+
+export default Home;
