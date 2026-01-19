@@ -198,8 +198,8 @@ const Home = () => {
 
                             <div className="flex gap-4">
                                 <a
-                                    href="/HarishK Resume(2025).pdf"
-                                    download="HarishK Resume(2025).pdf"
+                                    href="/Harish_Resume.pdf"
+                                    download="HARISH RESUME (19.01.2026).pdf"
                                     className="inline-block bg-accent text-primary px-8 py-3 rounded-full font-bold text-sm hover:opacity-90 transition-opacity"
                                 >
                                     Download CV
