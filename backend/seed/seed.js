@@ -82,25 +82,26 @@ const seedData = async () => {
         // Seed Projects
         const projects = [
             {
+                title: 'Clinic Booking System',
+                shortDescription: 'Full-stack healthcare platform for appointment scheduling.',
+                longDescription: 'A comprehensive healthcare platform that allows patients to book appointments with doctors. Features include doctor management, hospital lists, and real-time scheduling.',
+                tech: ['React Js', 'Express Js', 'MongoDB', 'Tailwind CSS'],
+                repoUrl: 'https://github.com/Harishsbb/clinic_booking',
+                demoUrl: 'https://clinic-booking-rho.vercel.app/',
+                image: '/clinic-booking.png',
+                featured: true,
+                date: new Date('2025-12-01')
+            },
+            {
                 title: 'Self Shopping Smart Trolley (SIH 2024)',
                 shortDescription: 'Smart trolley with automated billing.',
                 longDescription: 'Developed a smart shopping trolley prototype automating billing and inventory tracking, reducing checkout time by 40%. Achieved 80% feature completion collaboratively in a team of 6 members. Integrated automated billing system to enhance user convenience and minimize manual errors. Demonstrated prototype in a live environment, highlighting efficiency and usability improvements.',
                 tech: ['Python', 'Flask', 'React Js', 'MySQL'],
-                repoUrl: 'https://github.com/Harishsbb/smart-trolley', // Placeholder if not real
-                demoUrl: '',
+                repoUrl: 'https://github.com/Harishsbb/smart-trolley',
+                demoUrl: 'https://trolley-frontend-lemon.vercel.app/',
                 image: '/project-trolley.png',
                 featured: true,
-                date: new Date('2024-06-01')
-            },
-            {
-                title: 'Bank Management System',
-                shortDescription: 'Full stack banking application.',
-                longDescription: 'Created online banking features like transactions, balance check, statements, and account management. Designed secure backend APIs and responsive UI.',
-                tech: ['Python Flask', 'MySQL', 'HTML', 'CSS', 'Bootstrap'],
-                repoUrl: 'https://github.com/Harishsbb/bank-management', // Placeholder
-                image: '/project-bank.png',
-                featured: true,
-                date: new Date('2025-05-01')
+                date: new Date('2025-11-20')
             },
             {
                 title: 'Solo Leveling Todo',
@@ -112,6 +113,16 @@ const seedData = async () => {
                 image: '/solo-leveling-todo.png',
                 featured: true,
                 date: new Date('2025-11-15')
+            },
+            {
+                title: 'Bank Management System',
+                shortDescription: 'Full stack banking application.',
+                longDescription: 'Created online banking features like transactions, balance check, statements, and account management. Designed secure backend APIs and responsive UI.',
+                tech: ['Python Flask', 'MySQL', 'HTML', 'CSS', 'Bootstrap'],
+                repoUrl: 'https://github.com/Harishsbb/bank-management',
+                image: '/project-bank.png',
+                featured: true,
+                date: new Date('2025-05-01')
             }
         ];
 
