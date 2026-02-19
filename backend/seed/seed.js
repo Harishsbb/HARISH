@@ -64,8 +64,9 @@ const seedData = async () => {
                 { name: 'MongoDB – Proof of Completion', issuer: 'MongoDB', date: '2023', url: '#' },
                 { name: 'JavaScript Language', issuer: 'LinkedIn Learning', date: '2023', url: '#' },
                 { name: 'Front-End Development with HTML & CSS', issuer: 'Great Learning', date: '2023', url: '#' },
-                { name: 'Generative AI for Beginners', issuer: 'Great Learning', date: '2024', url: '#' }
-            ],
+                { name: 'Generative AI for Beginners', issuer: 'Great Learning', date: '2024', url: '#' },
+                { name: 'sbb certificate', issuer: 'NPTEL (IIT Madras)', date: '2023', url: '#' },
+            ],          
             achievements: [
                 'Hackovation 2.0 – VIT Chennai (Sep 2025): Secured 3rd Prize in a 32-hour national-level hackathon.',
                 'First Prize — Paper Presentation (RAGEX’25, ROBO Club, ECE Dept.) — Nov 1, 2025.',
