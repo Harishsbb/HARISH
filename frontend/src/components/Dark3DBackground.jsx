@@ -8,7 +8,7 @@ const FogLayer = () => {
     const ref = useRef();
     useFrame((state) => {
         const t = state.clock.getElapsedTime();
-        ref.current.rotation.z = t * 0.05; // Very slow rotation
+        if (ref.current) ref.current.rotation.z = t * 0.05; // Very slow rotation
     });
     return (
         <group ref={ref}>
@@ -43,6 +43,8 @@ const Dark3DBackground = () => {
                 </Float>
 
                 <FloatingParticles />
+
+                <FlyingHero />
 
                 <Stars radius={100} depth={50} count={7000} factor={4} saturation={0} fade speed={0.5} />
             </Canvas>

@@ -7,6 +7,7 @@ import { SiPython, SiWhatsapp, SiJavascript, SiReact, SiNodedotjs, SiExpress, Si
 import { FaJava, FaNodeJs } from "react-icons/fa";
 import ProjectCard from '../components/ProjectCard';
 import Dark3DBackground from '../components/Dark3DBackground';
+import SkillsCloud from '../components/SkillsCloud';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
@@ -26,11 +27,14 @@ const getSkillIcon = (skillName) => {
     // Programming Languages
     if (lowerSkill.includes('python')) return { icon: <SiPython size={40} />, color: "text-blue-500" };
     if (lowerSkill.includes('java') && !lowerSkill.includes('script')) return { icon: <FaJava size={40} />, color: "text-red-500" };
+
+    // Graphics / 3D
+    if (lowerSkill.includes('three') || lowerSkill.includes('3.js') || lowerSkill.includes('r3f')) return { icon: <SiThreedotjs size={40} />, color: "text-white" };
+
     if (lowerSkill.includes('javascript') || lowerSkill.includes('js')) return { icon: <SiJavascript size={40} />, color: "text-yellow-400" };
 
     // Frontend
     if (lowerSkill.includes('react')) return { icon: <SiReact size={40} />, color: "text-cyan-400" };
-    if (lowerSkill.includes('three')) return { icon: <SiThreedotjs size={40} />, color: "text-white" };
     if (lowerSkill.includes('html')) return { icon: <SiHtml5 size={40} />, color: "text-orange-500" };
     if (lowerSkill.includes('css')) return { icon: <SiCss3 size={40} />, color: "text-blue-500" };
     if (lowerSkill.includes('bootstrap')) return { icon: <SiBootstrap size={40} />, color: "text-purple-600" };
@@ -224,22 +228,32 @@ const Home = () => {
                         <h2 className="text-3xl font-bold text-white">Technical Expertise</h2>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                        {profile.skills.map((skill, index) => {
-                            const { icon, color } = getSkillIcon(skill);
-                            return (
-                                <motion.div
-                                    key={index}
-                                    whileHover={{ y: -5 }}
-                                    className="bg-secondary/30 p-8 rounded-lg flex flex-col items-center gap-4 border border-white/5 hover:border-accent/30 transition-all group"
-                                >
-                                    <div className={`text-4xl ${color} group-hover:scale-110 transition-transform`}>
-                                        {icon}
-                                    </div>
-                                    <span className="text-white font-medium text-center">{skill}</span>
-                                </motion.div>
-                            );
-                        })}
+                    <div className="flex flex-col lg:flex-row items-center gap-12">
+                        {/* 3D Skills Cloud */}
+                        <div className="flex-1 w-full order-2 lg:order-1">
+                            <SkillsCloud skills={profile.skills} />
+                        </div>
+
+                        {/* Skills Grid */}
+                        <div className="flex-1 order-1 lg:order-2">
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                                {profile.skills.map((skill, index) => {
+                                    const { icon, color } = getSkillIcon(skill);
+                                    return (
+                                        <motion.div
+                                            key={index}
+                                            whileHover={{ y: -5, scale: 1.05 }}
+                                            className="bg-secondary/30 p-4 rounded-lg flex flex-col items-center gap-3 border border-white/5 hover:border-accent/30 transition-all group"
+                                        >
+                                            <div className={`text-3xl ${color} group-hover:scale-110 transition-transform`}>
+                                                {icon}
+                                            </div>
+                                            <span className="text-white text-xs font-medium text-center">{skill}</span>
+                                        </motion.div>
+                                    );
+                                })}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

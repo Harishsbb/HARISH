@@ -14,6 +14,15 @@ export default {
             fontFamily: {
                 sans: ['Inter', 'sans-serif'],
             },
+            animation: {
+                'gradient': 'gradient 8s linear infinite',
+            },
+            keyframes: {
+                gradient: {
+                    '0%, 100%': { 'background-size': '300% 300%', 'background-position': 'left center' },
+                    '50%': { 'background-size': '300% 300%', 'background-position': 'right center' },
+                },
+            },
         },
     },
     plugins: [],
